@@ -1,4 +1,4 @@
-import { Button, Form, Row, Col } from 'react-bootstrap'
+import { Button, Form, Row, Col, Alert } from 'react-bootstrap'
 import useCategorias from '../hooks/useCategorias'
 import { useState } from 'react'
 
@@ -19,16 +19,20 @@ const Formulario = () => {
         e.preventDefault()
 
         // validar formulario
-        if(Object.values(busqueda).includes('')){
+        if (Object.values(busqueda).includes('')) {
             setAlerta('Todos los campos son obligatorios')
             return
         }
+        setAlerta('')
+
     }
 
     return (
         <Form
             onSubmit={handleSubmit}
         >
+            {alerta && <Alert variant='danger' className='text-center'>{alerta}</Alert>}
+
             <Row>
                 <Col md={6}>
                     <Form.Group className='mb-3'>
@@ -43,7 +47,7 @@ const Formulario = () => {
                             value={busqueda.nombre}
                             onChange={e => setBusqueda({
                                 ...busqueda,
-                                [e.target.name] : e.target.value
+                                [e.target.name]: e.target.value
                             })}
                         />
                     </Form.Group>
@@ -59,19 +63,19 @@ const Formulario = () => {
                             value={busqueda.categoria}
                             onChange={e => setBusqueda({
                                 ...busqueda,
-                                [e.target.name] : e.target.value
+                                [e.target.name]: e.target.value
                             })}
                         >
                             <option>Selecciona una Categoria</option>
 
-                            { categorias.map(categoria => (
-                                    <option
+                            {categorias.map(categoria => (
+                                <option
                                     key={categoria.strCategory}
                                     value={categoria.strCategory}
-                                    >
-                                        {categoria.strCategory}
-                                    </option>
-                                )) }
+                                >
+                                    {categoria.strCategory}
+                                </option>
+                            ))}
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -80,9 +84,10 @@ const Formulario = () => {
             <Row className="d-flex justify-content-end">
                 <Col md={3}>
                     <Button
-                    variant='danger'
-                    className='text-uppercase w-100'
-                     >
+                        variant='danger'
+                        className='text-uppercase w-100'
+                        type='submit'
+                    >
                         Buscar Bebidas
                     </Button>
                 </Col>
