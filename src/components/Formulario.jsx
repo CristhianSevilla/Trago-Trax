@@ -1,12 +1,15 @@
 import { Button, Form, Row, Col, Alert } from 'react-bootstrap'
 import useCategorias from '../hooks/useCategorias'
 import { useState } from 'react'
+import useBebidas from '../hooks/useBebidas'
 
 import React from 'react'
 
 const Formulario = () => {
 
     const { categorias } = useCategorias()
+
+    const {consultarBebida} = useBebidas()
 
     const [busqueda, setBusqueda] = useState({
         nombre: '',
@@ -19,11 +22,14 @@ const Formulario = () => {
         e.preventDefault()
 
         // validar formulario
-        if (Object.values(busqueda).includes('')) {
+        if (Object.values(busqueda).includes('') || Object.values(busqueda).includes('Selecciona una Categoria')) {
             setAlerta('Todos los campos son obligatorios')
             return
         }
         setAlerta('')
+
+        //Consultar Bebidas
+        consultarBebida(busqueda)
 
     }
 
