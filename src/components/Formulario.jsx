@@ -45,7 +45,7 @@ const Formulario = () => {
                 <Col md={6}>
                     <Form.Group className='mb-3'>
                         <Form.Label htmlFor='ingrediente'>
-                            Ingrediente:
+                            Bebida:
                         </Form.Label>
                         <Form.Select
                             id='ingrediente'
