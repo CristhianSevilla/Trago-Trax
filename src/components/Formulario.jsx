@@ -24,7 +24,7 @@ const Formulario = () => {
         e.preventDefault()
 
         // validar formulario
-        if (Object.values(busqueda).includes('') || Object.values(busqueda).includes('Selecciona una Categoria')) {
+        if (Object.values(busqueda).includes('')  || Object.values(busqueda).includes('Selecciona una Categoria') || Object.values(busqueda).includes('Selecciona un Ingrediente')) {
             setAlerta('Todos los campos son obligatorios')
             return
         }
