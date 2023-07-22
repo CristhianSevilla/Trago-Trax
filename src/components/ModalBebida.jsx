@@ -20,7 +20,9 @@ const ModalBebida = () => {
     }
 
     return (
-        <Modal show={modal} onHide={handleModalClick}>
+
+        !cargando && (
+ <Modal show={modal} onHide={handleModalClick}>
             <Image
                 src={receta.strDrinkThumb}
                 alt={`Imagen de la receta de ${receta.strDrink}`}
@@ -38,6 +40,8 @@ const ModalBebida = () => {
                 </div>
             </Modal.Body>
         </Modal>
+        )
+       
     )
 }
 
