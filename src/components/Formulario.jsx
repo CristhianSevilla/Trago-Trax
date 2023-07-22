@@ -2,17 +2,19 @@ import { Button, Form, Row, Col, Alert } from 'react-bootstrap'
 import useCategorias from '../hooks/useCategorias'
 import { useState } from 'react'
 import useBebidas from '../hooks/useBebidas'
+import useIngredientes from '../hooks/useIngredientes'
 
 import React from 'react'
 
 const Formulario = () => {
 
     const { categorias } = useCategorias()
+    const {ingredientes} = useIngredientes()
 
     const {consultarBebida} = useBebidas()
 
     const [busqueda, setBusqueda] = useState({
-        nombre: '',
+        ingrediente: '',
         categoria: ''
     })
 
@@ -42,20 +44,29 @@ const Formulario = () => {
             <Row>
                 <Col md={6}>
                     <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='nombre'>
-                            Bebida:
+                        <Form.Label htmlFor='ingrediente'>
+                            Ingrediente:
                         </Form.Label>
-                        <Form.Control
-                            id='nombre'
-                            type='text'
-                            placeholder='Ej: Tequila, Vodka, etc'
-                            name='nombre'
-                            value={busqueda.nombre}
+                        <Form.Select
+                            id='ingrediente'
+                            name='ingrediente'
+                            value={busqueda.ingrediente}
                             onChange={e => setBusqueda({
                                 ...busqueda,
                                 [e.target.name]: e.target.value
                             })}
-                        />
+                        >
+                            <option>Selecciona un Ingrediente</option>
+
+                            {ingredientes.map(ingrediente => (
+                                <option
+                                    key={ingrediente.strIngredient1}
+                                    value={ingrediente.strIngredient1}
+                                >
+                                    {ingrediente.strIngredient1}
+                                </option>
+                            ))}
+                        </Form.Select>
                     </Form.Group>
                 </Col>
                 <Col md={6}>
