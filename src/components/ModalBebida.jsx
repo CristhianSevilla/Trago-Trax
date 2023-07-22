@@ -3,7 +3,7 @@ import useBebidas from "../hooks/useBebidas"
 
 const ModalBebida = () => {
 
-    const { modal, handleModalClick, receta } = useBebidas()
+    const { modal, handleModalClick, receta, cargando } = useBebidas()
 
     const mostrarIngredientes = () => {
         let ingredientes = []
@@ -27,6 +27,7 @@ const ModalBebida = () => {
             />
             <Modal.Header>
                 <Modal.Title>{receta.strDrink}</Modal.Title>
+                {receta.strCategory}
             </Modal.Header>
             <Modal.Body>
                 <div className="p-2">
